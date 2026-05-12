@@ -1,0 +1,13 @@
+﻿variant,label,seed,env_step,num_eval_points,complete_by_min_env_step,run_dir
+mappo_raw_tau6,MAPPO-raw-tau6,0,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\medium_4auv\auv6dof\mappo\seed_0\tmc_medium_2e6_main-all_02
+mappo_raw_tau6,MAPPO-raw-tau6,1,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\medium_4auv\auv6dof\mappo\seed_1\tmc_medium_2e6_main-all
+mappo_raw_tau6,MAPPO-raw-tau6,2,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\medium_4auv\auv6dof\mappo\seed_2\tmc_medium_2e6_main-medium
+mappo_velocity3_nonsemantic,MAPPO-velocity3,0,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\ablation_medium_4auv\auv6dof\mappo\seed_0\tmc_ablation_mappo_velocity3_nonsemantic_2e6_ablation-mappo_velocity3_nonsemantic
+mappo_velocity3_nonsemantic,MAPPO-velocity3,1,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\ablation_medium_4auv\auv6dof\mappo\seed_1\tmc_ablation_mappo_velocity3_nonsemantic_2e6_ablation-mappo_velocity3_nonsemantic
+mappo_velocity3_nonsemantic,MAPPO-velocity3,2,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\ablation_medium_4auv\auv6dof\mappo\seed_2\tmc_ablation_mappo_velocity3_nonsemantic_2e6_ablation-mappo_velocity3_nonsemantic
+mappo_semantic_state_only,MAPPO-semantic-state,0,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\ablation_medium_4auv\auv6dof\mappo\seed_0\tmc_ablation_mappo_semantic_state_only_2e6_ablation-mappo_semantic_state_only
+mappo_semantic_state_only,MAPPO-semantic-state,1,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\ablation_medium_4auv\auv6dof\mappo\seed_1\tmc_ablation_mappo_semantic_state_only_2e6_ablation-mappo_semantic_state_only
+mappo_semantic_state_only,MAPPO-semantic-state,2,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\ablation_medium_4auv\auv6dof\mappo\seed_2\tmc_ablation_mappo_semantic_state_only_2e6_ablation-mappo_semantic_state_only
+stg_mappo_full,STG-MAPPO-full,0,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\medium_4auv\auv6dof\stg_mappo\seed_0\tmc_medium_2e6_stage1-stg-medium_02
+stg_mappo_full,STG-MAPPO-full,1,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\medium_4auv\auv6dof\stg_mappo\seed_1\tmc_medium_2e6_stage1-stg-medium
+stg_mappo_full,STG-MAPPO-full,2,2000000,500,True,C:\code\MARL代码包\OpenMARL_codex\artifacts\auv6dof_tmc_2e6\medium_4auv\auv6dof\stg_mappo\seed_2\tmc_medium_2e6_stage1-stg-medium

@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+scipy
+torch
+gym==0.25.1
+easydict
+pytest
+openpyxl
+python-docx
+tensorboardX
+DI-engine

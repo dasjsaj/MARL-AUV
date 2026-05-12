@@ -1,0 +1,79 @@
+{
+  "extends": "auv6dof_tmc_medium_2e6.json",
+  "description": "IEEE TMC 2e6 ablation experiment for MAPPO/STG-MAPPO components in medium 4-AUV scenario.",
+  "scenario": "medium_ablation",
+  "algos": ["mappo"],
+  "seeds": [0, 1, 2],
+  "output_root": "artifacts/auv6dof_tmc_2e6/ablation_medium_4auv",
+  "run_tag": "tmc_ablation_2e6",
+  "ablation_profiles": {
+    "mappo_raw_tau6": {
+      "algo": "mappo",
+      "profile_label": "MAPPO-raw-tau6",
+      "env_overrides": {
+        "algo_profile": "ablation_mappo_raw_tau6",
+        "action_control_mode": "tau6",
+        "action_scale": 0.18,
+        "reward": {"version": "tracking_v3", "desired_tracking_distance": 0.015, "w_semantic_reward": 0.0},
+        "obs": {"include_tracking_diagnostics": false, "include_semantic_features": false, "include_semantic_graph_features": false}
+      }
+    },
+    "mappo_velocity3_nonsemantic": {
+      "algo": "mappo",
+      "profile_label": "MAPPO-velocity3-nonsemantic",
+      "env_overrides": {
+        "algo_profile": "ablation_mappo_velocity3_nonsemantic",
+        "action_control_mode": "velocity3",
+        "action_scale": 0.75,
+        "action_smoothing": 0.20,
+        "max_action_delta": 0.35,
+        "velocity_command_gain": 1.0,
+        "reward": {"version": "tracking_v3", "desired_tracking_distance": 0.015, "w_semantic_reward": 0.0},
+        "obs": {"include_tracking_diagnostics": true, "include_semantic_features": false, "include_semantic_graph_features": false}
+      }
+    },
+    "mappo_semantic_state_only": {
+      "algo": "mappo",
+      "profile_label": "MAPPO-semantic-state-only",
+      "env_overrides": {
+        "algo_profile": "ablation_mappo_semantic_state_only",
+        "action_control_mode": "velocity3",
+        "action_scale": 0.75,
+        "action_smoothing": 0.20,
+        "max_action_delta": 0.35,
+        "velocity_command_gain": 1.0,
+        "reward": {"version": "tracking_v3", "desired_tracking_distance": 0.015, "w_semantic_reward": 0.0},
+        "obs": {"include_tracking_diagnostics": true, "include_semantic_features": true, "include_semantic_graph_features": true}
+      }
+    },
+    "stg_mappo_full": {
+      "algo": "stg_mappo",
+      "profile_label": "STG-MAPPO-full",
+      "env_overrides": {
+        "algo_profile": "ablation_stg_mappo_full",
+        "action_control_mode": "velocity3",
+        "action_scale": 0.75,
+        "action_smoothing": 0.20,
+        "max_action_delta": 0.35,
+        "velocity_command_gain": 1.0,
+        "reward": {
+          "version": "semantic_tracking_band",
+          "desired_tracking_distance": 0.015,
+          "tracking_band_lower": 0.010,
+          "tracking_band_upper": 0.015,
+          "sensor_range": 0.45,
+          "lost_distance": 0.65,
+          "w_tracking_reward": 0.72,
+          "w_observation_reward": 0.16,
+          "w_coordination_reward": 0.02,
+          "w_communication_reward": 0.01,
+          "w_semantic_reward": 0.09,
+          "w_control_cost": 0.08,
+          "w_band_stability": 0.35,
+          "w_reacquire": 0.20
+        },
+        "obs": {"include_tracking_diagnostics": true, "include_semantic_features": true, "include_semantic_graph_features": true}
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "auv6dof_tmc_medium_2e6.json",
+  "description": "IEEE TMC 2e6 scalability experiment, medium scenario with 2/4/6/8 AUVs.",
+  "scenario": "medium_scale",
+  "algos": ["stg_mappo", "mappo", "maddpg", "matd3"],
+  "scale_n_agents": [2, 4, 6, 8],
+  "output_root": "artifacts/auv6dof_tmc_2e6/scale_medium",
+  "run_tag": "tmc_scale_medium_2e6"
+}

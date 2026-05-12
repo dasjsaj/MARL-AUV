@@ -1,0 +1,85 @@
+{
+  "description": "Dense debug convergence config for AUV6DOF MADDPG/MAPPO. Uses 4 AUVs, velocity3 actions, tracking_v3 reward, dense eval points, and no extra DI obs RMS because the Gym observation is already normalized.",
+  "env": "auv6dof",
+  "algos": ["maddpg", "mappo"],
+  "seeds": [0, 1, 2],
+  "max_env_step": 50000,
+  "n_agent": 4,
+  "episode_length": 200,
+  "collector_env_num": 2,
+  "evaluator_env_num": 1,
+  "eval_interval_steps": 100,
+  "eval_horizon_steps": 200,
+  "output_root": "artifacts/auv6dof_convergence_dense_debug",
+  "run_tag": "dense_debug_velocity3_v3",
+  "env_overrides": {
+    "action_control_mode": "velocity3",
+    "action_scale": 1.0,
+    "control_mode": "direct_tau",
+    "boundary_guard_enabled": false,
+    "separation_guard_enabled": false,
+    "normalize_obs": false,
+    "normalize_obs_in_eval": false,
+    "action_smoothing": 0.20,
+    "max_action_delta": 0.35,
+    "velocity_command_gain": 1.0,
+    "eval_log_format": "csv",
+    "verbose_eval": false,
+    "reward": {
+      "version": "tracking_v3",
+      "desired_tracking_distance": 0.08,
+      "sensor_range": 0.45,
+      "lost_distance": 0.65,
+      "tracking_error_clip": 0.8,
+      "w_tracking_reward": 0.68,
+      "w_observation_reward": 0.18,
+      "w_coordination_reward": 0.04,
+      "w_communication_reward": 0.02,
+      "w_semantic_reward": 0.08,
+      "w_control_cost": 0.035
+    },
+    "obs": {
+      "include_target_velocity": true,
+      "include_relative_velocity": true,
+      "include_target_rel_body": true,
+      "include_relative_velocity_body": true,
+      "include_los_unit_body": true,
+      "include_prev_action": true,
+      "use_attitude_sin_cos": true,
+      "include_boundary_margin": true,
+      "normalize_physical": true,
+      "include_tracking_diagnostics": true,
+      "include_semantic_features": true
+    },
+    "reset": {
+      "curriculum_stage": "easy",
+      "train_curriculum_stage": "easy",
+      "eval_curriculum_stage": "easy",
+      "min_init_separation": 0.08,
+      "easy_target_speed_range": [0.001, 0.002]
+    }
+  },
+  "policy_overrides": {
+    "maddpg": {
+      "random_collect_size": 2000,
+      "learn.batch_size": 512,
+      "learn.learning_rate_actor": 0.0003,
+      "learn.learning_rate_critic": 0.0003,
+      "learn.target_theta": 0.02,
+      "learn.discount_factor": 0.95,
+      "collect.n_sample": 400,
+      "collect.noise_sigma": 0.20,
+      "other.replay_buffer.replay_buffer_size": 100000
+    },
+    "mappo": {
+      "learn.batch_size": 400,
+      "learn.learning_rate": 0.0003,
+      "learn.entropy_weight": 0.001,
+      "learn.clip_ratio": 0.2,
+      "learn.grad_clip_value": 5,
+      "collect.n_sample": 800,
+      "collect.discount_factor": 0.95,
+      "collect.gae_lambda": 0.95
+    }
+  }
+}

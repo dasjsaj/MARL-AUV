@@ -1,0 +1,8 @@
+algorithm,last20_eval_return,last20_tail_distance,last20_tracking_error,last20_lost_rate,diagnosis,paper_explanation
+STG-MAPPO,255.28119156618914,0.012084037552635582,0.02170068094559606,0.0014166666666666666,stable tracking,"semantic task graph, semantic reward, and velocity3 action abstraction align the optimization target."
+MAPPO,109.45883252334431,0.45249885538806933,0.410815413147902,0.19787333333333335,learns but less accurate,raw tau6 action and non-semantic observation make stable close tracking harder.
+MADDPG,126.14159363143864,0.3739717355333007,0.3615921449968369,0.12395833333333334,partial convergence with high variance,some seeds learn useful behavior but tracking accuracy is inconsistent.
+MATD3,13.364497367358323,0.6951761011141476,0.6337340857767666,0.4621558333333333,partial convergence with high variance,some seeds learn useful behavior but tracking accuracy is inconsistent.
+HAPPO,5.449435070879116,0.8535594376006873,0.7114871115698443,0.44742499999999996,mostly unstable or not converged,target lost rate and tracking error remain high under the same training budget.
+MADQN,-27.215915423009623,0.9252855564816004,0.7695380179654329,0.5962149999999999,mostly unstable or not converged,target lost rate and tracking error remain high under the same training budget.
+MASAC,-70.5702464066036,1.2152246366815345,1.0288598799063664,0.8012258333333334,mostly unstable or not converged,target lost rate and tracking error remain high under the same training budget.

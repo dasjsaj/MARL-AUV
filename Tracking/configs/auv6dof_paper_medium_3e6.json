@@ -1,0 +1,93 @@
+{
+  "description": "Paper-grade medium scenario long test for AUV6DOF MADDPG/MAPPO. Requires 3e6 env steps, eval every 5000 steps, and tail100 all-AUV target distance < 0.015.",
+  "env": "auv6dof",
+  "algos": ["maddpg", "mappo"],
+  "seeds": [0, 1, 2],
+  "max_env_step": 3000000,
+  "n_agent": 4,
+  "episode_length": 500,
+  "collector_env_num": 4,
+  "evaluator_env_num": 2,
+  "eval_interval_steps": 5000,
+  "eval_horizon_steps": 500,
+  "trained_eval_episodes": 30,
+  "output_root": "artifacts/auv6dof_paper_medium_3e6_formal",
+  "run_tag": "paper_medium_3e6_velocity3",
+  "env_overrides": {
+    "tail_eval_steps": 100,
+    "action_control_mode": "velocity3",
+    "action_scale": 0.75,
+    "control_mode": "direct_tau",
+    "boundary_guard_enabled": false,
+    "separation_guard_enabled": false,
+    "normalize_obs": false,
+    "normalize_obs_in_eval": false,
+    "action_smoothing": 0.20,
+    "max_action_delta": 0.35,
+    "velocity_command_gain": 1.0,
+    "eval_log_format": "csv",
+    "verbose_eval": false,
+    "reward": {
+      "version": "tracking_v3",
+      "desired_tracking_distance": 0.015,
+      "sensor_range": 0.45,
+      "lost_distance": 0.65,
+      "tracking_error_clip": 0.8,
+      "w_tracking_reward": 0.72,
+      "w_observation_reward": 0.16,
+      "w_coordination_reward": 0.02,
+      "w_communication_reward": 0.01,
+      "w_semantic_reward": 0.09,
+      "w_control_cost": 0.08
+    },
+    "obs": {
+      "include_tracking_diagnostics": true,
+      "include_semantic_features": true
+    },
+    "reset": {
+      "curriculum_stage": "auto",
+      "train_curriculum_stage": "auto",
+      "eval_curriculum_stage": "medium",
+      "min_init_separation": 0.10,
+      "auto_easy_episodes": 800,
+      "auto_medium_episodes": 2000
+    }
+  },
+  "policy_overrides": {
+    "maddpg": {
+      "random_collect_size": 10000,
+      "learn.batch_size": 1024,
+      "learn.learning_rate_actor": 0.0001,
+      "learn.learning_rate_critic": 0.0003,
+      "learn.target_theta": 0.005,
+      "learn.discount_factor": 0.95,
+      "collect.n_sample": 3200,
+      "collect.noise_sigma": 0.10,
+      "eval.evaluator.eval_freq": 62,
+      "other.replay_buffer.replay_buffer_size": 100000
+    },
+    "mappo": {
+      "learn.batch_size": 800,
+      "learn.learning_rate": 0.0003,
+      "learn.entropy_weight": 0.001,
+      "learn.clip_ratio": 0.2,
+      "learn.grad_clip_value": 5,
+      "collect.n_sample": 6400,
+      "collect.discount_factor": 0.95,
+      "collect.gae_lambda": 0.95,
+      "eval.evaluator.eval_freq": 50
+    }
+  },
+  "acceptance": {
+    "mode": "evidence",
+    "note": "Distance/error thresholds are reference metrics for reporting; paper acceptance is based on effective tracking evidence versus early training and random/algorithmic baselines.",
+    "min_eval_points": 600,
+    "required_passed_runs": 3,
+    "tracking_error_success_threshold": 0.005,
+    "tail100_distance_threshold": 0.015,
+    "tail100_tracking_error_threshold": 0.005,
+    "tail100_lost_threshold": 0.0,
+    "tail100_action_saturation_threshold": 0.10,
+    "control_to_tracking_threshold": 0.35
+  }
+}

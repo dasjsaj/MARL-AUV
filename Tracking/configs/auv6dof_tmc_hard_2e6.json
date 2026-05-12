@@ -1,0 +1,12 @@
+{
+  "extends": "auv6dof_tmc_medium_2e6.json",
+  "description": "IEEE TMC 2e6 main comparison, hard 4-AUV AUV6DOF target tracking. Only STG-MAPPO uses semantics; baselines remain raw tau6/codebook.",
+  "scenario": "hard",
+  "output_root": "artifacts/auv6dof_tmc_2e6/hard_4auv",
+  "run_tag": "tmc_hard_2e6",
+  "env_overrides": {
+    "reset": {
+      "eval_curriculum_stage": "hard"
+    }
+  }
+}

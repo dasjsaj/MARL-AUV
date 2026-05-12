@@ -1,0 +1,12 @@
+{
+  "extends": "auv6dof_tmc_medium_2e6.json",
+  "description": "Smoke-only TMC config. Used to validate all algorithm/profile contracts without polluting formal 2e6 artifacts.",
+  "max_env_step": 20000,
+  "output_root": "artifacts/auv6dof_tmc_2e6/smoke_20k",
+  "run_tag": "tmc_smoke_20k",
+  "trained_eval_episodes": 1,
+  "acceptance": {
+    "min_eval_points": 1,
+    "required_passed_runs": 1
+  }
+}

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Training outputs
+artifacts/**/exp/
+artifacts/**/ckpt/
+artifacts/**/checkpoint/
+artifacts/**/logs/
+artifacts/**/*.pth
+artifacts/**/*.pth.tar
+artifacts/**/*.pt
+artifacts/**/*.pkl
+artifacts/**/*.log
+artifacts/**/eval_detail.csv
+artifacts/**/eval_detail_raw*.csv
+artifacts/**/summary.json
+
+# Keep paper-ready summarized results and figures
+!artifacts/**/paper_figures/
+!artifacts/**/paper_figures/**
+!artifacts/**/paper_tables/
+!artifacts/**/paper_tables/**
+!artifacts/**/hard_paper_figures/
+!artifacts/**/hard_paper_figures/**
+!artifacts/**/hard_paper_tables/
+!artifacts/**/hard_paper_tables/**
+!artifacts/**/ablation_paper_figures/
+!artifacts/**/ablation_paper_figures/**
+!artifacts/**/ablation_paper_tables/
+!artifacts/**/ablation_paper_tables/**
+!artifacts/**/best_ckpt_stress_table/
+!artifacts/**/best_ckpt_stress_table/*.csv
+!artifacts/**/best_ckpt_stress_table/*.xlsx
