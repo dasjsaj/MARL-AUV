@@ -353,7 +353,7 @@ Tracking/di_envs/auv6dof_di_env.py
 
 不同算法在 DI-engine 中的 evaluation 触发频率可能不同。论文图脚本会将 eval event 映射到真实 env step 轴，避免直接用 CSV 行数比较训练步长。
 
-## 12. 开源注意事项
+## 12. 注意事项
 
 本 release 包没有包含：
 
