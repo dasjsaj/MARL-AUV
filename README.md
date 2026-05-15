@@ -70,7 +70,8 @@ ModuleNotFoundError: No module named 'ding'
 python -m pip install DI-engine
 ```
 
-同时,如果你需要优化MARL/RL算法或依赖RL/MARL本地库，则在“https://github.com/opendilab/DI-engine”中将DI-engine下在本地，
+同时,如果你需要优化MARL/RL算法或依赖RL/MARL本地库，则在https://github.com/opendilab/DI-engine
+中将DI-engine下在本地，
 把 DI-engine 源码放在本仓库同级目录，然后执行（极其建议下在本地，为了避免冗余，本代码没嵌入DI-engine源码）：
 
 
