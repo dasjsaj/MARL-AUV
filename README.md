@@ -1,6 +1,6 @@
 # MARL for AUV Swarm Target Tracking
 
-本仓库是面向开源发布整理后的代码包，代码基于 DI-engine 接入多智能体算法，核心环境为六自由度 AUV 集群目标追踪环境，提出方法为 `STG-MAPPO`。该代码所撰写论文已投稿至Science China Information Sciences，在arxiv平台已发布。
+本仓库是面向开源发布整理后的代码包，代码基于 DI-engine 接入多智能体算法，核心环境为六自由度 AUV 集群目标追踪环境，提出方法为 `STG-MAPPO`。该代码所撰写论文已投稿至Science China Information Sciences，在arxiv平台已发布（待更新）。
 同时，本项目给出了用于基于MARL的公平性AUV仿真的开源代码，用于研究者快速接入基于AUV的MARL算法对比，并保证了对比的公平性，
 
 > 说明：本 release 目录只保留核心源码、配置、测试脚本、论文绘图脚本和汇总结果。大型 checkpoint、训练日志、半截实验目录、缓存文件没有放入仓库。
@@ -70,10 +70,12 @@ ModuleNotFoundError: No module named 'ding'
 python -m pip install DI-engine
 ```
 
-如果你的实验依赖本地 DI-engine 版本，则把 DI-engine 源码放在本仓库同级目录，然后执行：
+同时,如果你需要优化MARL/RL算法或依赖RL/MARL本地库，则在“https://github.com/opendilab/DI-engine”中将DI-engine下在本地，
+把 DI-engine 源码放在本仓库同级目录，然后执行（极其建议下在本地，为了避免冗余，本代码没嵌入DI-engine源码）：
+
 
 ```powershell
-python -m pip install -e ..\DI-engine --no-deps
+
 ```
 
 ## 4. 快速检查
@@ -82,12 +84,6 @@ python -m pip install -e ..\DI-engine --no-deps
 
 ```powershell
 cd OpenMARL_AUV_STG_GitHub
-```
-
-运行环境测试：
-
-```powershell
-python -m pytest Tracking\tests -q
 ```
 
 检查 reward：
