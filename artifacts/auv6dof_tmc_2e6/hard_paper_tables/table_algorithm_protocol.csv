@@ -1,8 +1,0 @@
-algorithm,di_engine_policy,policy_class,action_mode,semantic_state,semantic_graph,semantic_reward,role_in_paper
-STG-MAPPO,ppo,on-policy actor-critic,velocity3,yes,yes,yes,proposed method
-MAPPO,ppo,on-policy actor-critic,tau6,no,no,no,strong raw baseline
-MADDPG,ddpg,off-policy actor-critic,tau6,no,no,no,continuous off-policy baseline
-MATD3,td3,off-policy twin-critic actor-critic,tau6,no,no,no,continuous twin-critic baseline
-HAPPO,happo,on-policy heterogeneous-agent PPO,tau6,no,no,no,on-policy MARL baseline
-MADQN,madqn,value-based discrete MARL,discrete tau6 codebook,no,no,no,discrete-control baseline
-MASAC,discrete_sac,entropy-regularized off-policy discrete actor-critic,discrete tau6 codebook,no,no,no,entropy-regularized discrete baseline
