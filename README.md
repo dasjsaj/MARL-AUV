@@ -1,6 +1,6 @@
 # MARL for AUV Swarm Target Tracking
 
-本仓库是面向开源发布整理后的代码包，代码基于 DI-engine 接入多智能体算法，核心环境为六自由度 AUV 集群目标追踪环境，提出方法为 `STG-MAPPO`。该代码所撰写论文已投稿至Science China Information Sciences，在arxiv平台已发布（待更新）。
+本仓库是面向开源发布整理后的代码包，代码基于 DI-engine 接入多智能体算法，核心环境为六自由度 AUV 集群目标追踪环境，提出方法为 `STG-MAPPO`。该代码所撰写论文已投稿至Science China Information Sciences，在arxiv平台已发布(https://arxiv.org/abs/2605.15528)。
 同时，本项目给出了用于基于MARL的公平性AUV仿真的开源代码，用于研究者快速接入基于AUV的MARL算法对比，并保证了对比的公平性，
 
 > 说明：本 release 目录只保留核心源码、配置、测试脚本、论文绘图脚本和汇总结果。大型 checkpoint、训练日志、半截实验目录、缓存文件没有放入仓库。
@@ -362,6 +362,21 @@ Tracking/di_envs/auv6dof_di_env.py
 - 半截实验目录。
 
 如果需要完全复现实验，请根据第 6 节重新运行训练。
+
+## 13. 引用
+使用本代码请使用以下引用，
+```bibtex
+@misc{zhu2026tasksemantic,
+  title        = {Task-Semantic Graph-Driven Distributed Agent Networking for Underwater Target Tracking},
+  author       = {Zhu, Shengchao and Han, Guangjie and Lin, Chuan and He, Yu},
+  year         = {2026},
+  eprint       = {2605.15528},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  doi          = {10.48550/arXiv.2605.15528},
+  url          = {https://arxiv.org/abs/2605.15528}
+}
+
 
 
 
