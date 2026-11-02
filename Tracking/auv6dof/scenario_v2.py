@@ -486,19 +486,25 @@ class AUV6DOFScenario:
         distance_clip = max(1e-6, float(cfg.distance_clip))
         error_clip = max(1e-6, float(cfg.tracking_error_clip))
         progress_clip = max(1e-6, float(cfg.progress_clip))
-        return np.array(
-            [
-                np.clip(m["distance"] / distance_clip, 0.0, 2.0),
-                np.clip(m["error"] / error_clip, 0.0, 2.0),
-                np.clip(m["delta"] / progress_clip, -1.0, 1.0),
-                np.clip(-m["distance_rate"] / max(1e-6, float(cfg.closing_speed_clip)), -1.0, 1.0),
-                np.clip(m["error_ma"] / error_clip, 0.0, 2.0),
-                m["confidence"],
-                m["lost"],
-                m["lost_steps_norm"],
-            ],
-            dtype=np.float64,
-        )
+    return np.array(
+        [
+            np.clip(m["distance"], 0.0, 2.0),
+            np.clip(m["error"], 0.0, 2.0),
+            np.clip(
+                m["delta"] / cfg.progress_clip,
+                -1.0, 1.0
+            ),
+            np.clip(
+                m["delta"] / cfg.closing_speed_clip,
+                -1.0, 1.0
+            ),
+            np.clip(m["error_ma"], 0.0, 2.0),
+            m["confidence"],
+            m["lost"],
+            m["lost_steps_norm"],
+        ],
+        dtype=np.float64,
+    )
 
     def build_semantic_features(self, agent: Agent, world: World) -> np.ndarray:
         m = self._tracking_measurements(agent, world)
@@ -533,13 +539,38 @@ class AUV6DOFScenario:
         target_pos = np.asarray(world.targets[0].state.p_pos, dtype=np.float64) if world.targets else np.zeros(3)
         link_qualities: List[float] = []
         neighbor_errors: List[float] = []
+        neighbors = []
         for other in world.agents:
             if other is agent:
                 continue
-            rel_dist = float(np.linalg.norm(np.asarray(other.state.p_pos - agent.state.p_pos, dtype=np.float64)))
-            link_qualities.append(float(np.clip(1.0 - rel_dist / max(1e-6, float(cfg.sensor_range)), 0.0, 1.0)))
-            other_dist = float(np.linalg.norm(target_pos - np.asarray(other.state.p_pos, dtype=np.float64)))
-            neighbor_errors.append(abs(other_dist - float(cfg.desired_tracking_distance)))
+            distance = float(
+                np.linalg.norm(
+                    other.state.p_pos - agent.state.p_pos
+                )
+            )
+            availability = float(
+                np.clip(
+                    1.0 - distance / communication_radius,
+                    0.0, 1.0
+                )
+            )
+            if availability > 0.0:
+                neighbors.append((other, availability))
+                
+        neighbor_ratio = len(neighbors) / max(
+            1, len(world.agents) - 1
+        )
+        
+        mean_link = (
+            float(np.mean([x[1] for x in neighbors]))
+            if neighbors else 0.0
+        )
+        
+        best_link = (
+            float(np.max([x[1] for x in neighbors]))
+            if neighbors else 0.0
+        )
+
 
         if link_qualities:
             mean_link = float(np.mean(link_qualities))
@@ -779,7 +810,18 @@ class AUV6DOFScenario:
             "action_delta_norm": float(np.linalg.norm(action_delta)),
         }
         return total_reward
+    
+    def compute_link_quality(
+        distance, packet_loss_prob, info_age,
+        alpha, freshness_tau
+    ):
+        return float(
+            np.exp(-alpha * distance)
+            * (1.0 - packet_loss_prob)
+            * np.exp(-info_age / freshness_tau)
+        )
 
+    
     def _tracking_band_semantic_reward(self, agent: Agent, world: World) -> float:
         cfg = self.reward_config
         agent_idx = self._agent_index(agent)
@@ -813,8 +855,22 @@ class AUV6DOFScenario:
         coordination_reward = float(
             np.clip(1.0 - float(np.mean(all_band_errors)) / max(1e-6, float(cfg.tracking_error_clip)), 0.0, 1.0)
         )
-        communication_quality = float(
-            np.clip(1.0 - float(np.mean(all_band_errors)) / max(1e-6, float(cfg.sensor_range)), 0.0, 1.0)
+
+        link_scores = [
+            compute_link_quality(
+                distance=link.distance,
+                packet_loss_prob=link.loss_probability,
+                info_age=link.information_age,
+                alpha=cfg.link_attenuation_alpha,
+                freshness_tau=cfg.freshness_tau,
+            )
+            for link in link_states
+            if link.available
+        ]
+        
+        communication_quality = (
+            float(np.mean(link_scores))
+            if link_scores else 0.0
         )
 
         if target_lost > 0.5:
