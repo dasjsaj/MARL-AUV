@@ -349,22 +349,7 @@ Tracking/di_envs/auv6dof_di_env.py
 - DI-engine 1GB 源码副本；
 - 半截实验目录。
 
-如果需要完全复现实验，请根据第 6 节重新运行训练。
-
-## 13. 引用
-使用本代码请使用以下引用，
-```bibtex
-@misc{zhu2026tasksemantic,
-  title        = {Task-Semantic Graph-Driven Distributed Agent Networking for Underwater Target Tracking},
-  author       = {Zhu, Shengchao and Han, Guangjie and Lin, Chuan and He, Yu},
-  year         = {2026},
-  eprint       = {2605.15528},
-  archivePrefix = {arXiv},
-  primaryClass = {cs.RO},
-  doi          = {10.48550/arXiv.2605.15528},
-  url          = {https://arxiv.org/abs/2605.15528}
-}
-
+如果需要完全复现实验，请根据第 6 节重新运行训练
 
 
 
