@@ -31,7 +31,6 @@ OpenMARL_AUV_STG_GitHub/
 │   │   ├── auv6dof_di_env.py
 │   │   └── action_codebook.py
 │   ├── configs/                          # 训练与实验配置
-│   ├── scripts/                          # 训练、评估、绘图、压力测试脚本
 │   ├── tests/                            # 环境与奖励 sanity tests
 │   └── marl_orchestrator.py              # 多算法统一训练调度入口
 ├── requirements.txt
