@@ -1,6 +1,6 @@
 # MARL for AUV Swarm Target Tracking
 
-本仓库是面向开源发布整理后的代码包，代码基于 DI-engine 接入多智能体算法，核心环境为六自由度 AUV 集群目标追踪环境，提出方法为 `STG-MAPPO`。该代码所撰写论文已投稿至Science China Information Sciences。
+本仓库是面向开源发布整理后的代码包，代码基于 DI-engine 接入多智能体算法，核心环境为六自由度 AUV 集群目标追踪环境，提出方法为 `STG-MAPPO`。
 同时，本项目给出了用于基于MARL的公平性AUV仿真的开源代码，用于研究者快速接入基于AUV的MARL算法对比，并保证了对比的公平性，
 
 ## 1. 项目功能
