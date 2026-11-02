@@ -34,15 +34,6 @@ OpenMARL_AUV_STG_GitHub/
 │   ├── scripts/                          # 训练、评估、绘图、压力测试脚本
 │   ├── tests/                            # 环境与奖励 sanity tests
 │   └── marl_orchestrator.py              # 多算法统一训练调度入口
-├── artifacts/auv6dof_tmc_2e6/
-│   ├── paper_figures/                    # medium 论文图
-│   ├── paper_tables/                     # medium 论文表
-│   ├── hard_paper_figures/               # hard 论文图
-│   ├── hard_paper_tables/                # hard 论文表
-│   ├── ablation_medium_4auv/
-│   │   ├── ablation_paper_figures/       # 消融图
-│   │   └── ablation_paper_tables/        # 消融表
-│   └── best_ckpt_stress_table/           # checkpoint 压力测试汇总表
 ├── requirements.txt
 ├── .gitignore
 └── README.md
