@@ -710,7 +710,6 @@ class AUV6DOFScenario:
         coordination_reward = float(
             np.clip(1.0 - neighbor_mean_error / max(1e-6, float(cfg.tracking_error_clip)), 0.0, 1.0)
         )
-        communication_quality = float(np.clip(1.0 - neighbor_mean_error / max(1e-6, float(cfg.sensor_range)), 0.0, 1.0))
 
         if target_lost > 0.5:
             semantic_reward = progress
